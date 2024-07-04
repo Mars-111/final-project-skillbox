@@ -1,0 +1,19 @@
+{
+    "config": {
+        "name": "SkillboxSearchEngine",
+        "version": "0.1",
+        "max_responses": 10
+    },
+    "files": [
+        "C:\\develop\\C++ CLion\\search_engine_new\\res\\file001.txt",
+        "C:\\develop\\C++ CLion\\search_engine_new\\res\\file002.txt",
+        "C:\\develop\\C++ CLion\\search_engine_new\\res\\file003.txt",
+        "C:\\develop\\C++ CLion\\search_engine_new\\res\\file004.txt",
+        "C:\\develop\\C++ CLion\\search_engine_new\\res\\file005.txt",
+        "C:\\develop\\C++ CLion\\search_engine_new\\res\\file006.txt",
+        "C:\\develop\\C++ CLion\\search_engine_new\\res\\file007.txt",
+        "C:\\develop\\C++ CLion\\search_engine_new\\res\\file008.txt",
+        "C:\\develop\\C++ CLion\\search_engine_new\\res\\file009.txt",
+        "C:\\develop\\C++ CLion\\search_engine_new\\res\\file010.txt"
+    ]
+}
