@@ -57,9 +57,11 @@ int main()
 
     } catch(std::invalid_argument& e) {
         std::cerr<<e.what()<<'\n';
+        system("pause");
         return 0;
     } catch(...) {
         std::cerr<<"Unknown error\n";
+        system("pause");
         return 0;
     }
 
