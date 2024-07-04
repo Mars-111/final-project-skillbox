@@ -34,15 +34,14 @@ int main()
 
     SearchServer ss(inv);
     auto final_search =
-            SearchServer::answer_search_to_pair(
-                    ss.search(ConverterJSON::GetRequests(requests),
-                    ConverterJSON::GetResponsesLimit(config))
+            SearchServer::AnswerSearchToPair(
+                    ss.Search(ConverterJSON::GetRequests(requests),
+                              ConverterJSON::GetResponsesLimit(config))
             );
 
 
-
-    ConverterJSON::putAnswers(
-            path_to_res+"answers.json",
+    ConverterJSON::PutAnswers(
+            path_to_res + "answers.json",
             final_search
     );
 

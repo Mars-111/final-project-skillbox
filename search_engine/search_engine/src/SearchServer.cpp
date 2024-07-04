@@ -4,7 +4,7 @@
 
 
 
-std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<std::string> &queries_input, size_t max_responses = 5)
+std::vector<std::vector<RelativeIndex>> SearchServer::Search(const std::vector<std::string> &queries_input, size_t max_responses = 5)
 {
     std::vector<std::vector<RelativeIndex>> result;
     result.resize(queries_input.size());
@@ -28,7 +28,7 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
 }
 
 std::vector<std::vector<std::pair<int, double>>>
-SearchServer::answer_search_to_pair(std::vector<std::vector<RelativeIndex>> answer_search)
+SearchServer::AnswerSearchToPair(std::vector<std::vector<RelativeIndex>> answer_search)
 {
     std::vector<std::vector<std::pair<int, double>>> answer;
     answer.resize(answer_search.size());

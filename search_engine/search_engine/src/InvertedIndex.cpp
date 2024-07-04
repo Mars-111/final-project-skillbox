@@ -83,6 +83,7 @@ std::vector<Entry> InvertedIndex::GetWordCount(const std::string &word)
             }
         }
         std::vector<Entry> result;
+        result.reserve(map_words.size());
         for (auto it : map_words)
         {
             result.emplace_back(Entry{it.first, it.second});

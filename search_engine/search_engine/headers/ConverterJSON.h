@@ -30,5 +30,5 @@ public:
     /**
     * Положить в файл answers.json результаты поисковых запросов
     */
-    static void putAnswers(std::string path_to_answers, const std::vector<std::vector<std::pair<int, double>>>& answers_sorted);
+    static void PutAnswers(std::string path_to_answers, const std::vector<std::vector<std::pair<int, double>>>& answers_sorted);
 };

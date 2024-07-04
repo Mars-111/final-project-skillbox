@@ -683,7 +683,7 @@ class json_pointer
         // - slash: position of the last read slash (or end of string)
         // - start: position after the previous slash
         for (
-            // search for the first slash after the first character
+            // Search for the first slash after the first character
             std::size_t slash = reference_string.find_first_of('/', 1),
             // set the beginning of the first reference token
             start = 1;

@@ -27,7 +27,7 @@ const_iterator find(KeyType&& key) const;
 ## Parameters
 
 `key` (in)
-:   key value of the element to search for.
+:   key value of the element to Search for.
     
 ## Return value
 

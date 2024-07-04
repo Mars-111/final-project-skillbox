@@ -104,7 +104,7 @@ std::string get_number_for_putAnswers(unsigned int num)
     return std::to_string(num);
 }
 
-void ConverterJSON::putAnswers(std::string path_to_answers, const std::vector<std::vector<std::pair<int, double>>>& answers_sorted)
+void ConverterJSON::PutAnswers(std::string path_to_answers, const std::vector<std::vector<std::pair<int, double>>>& answers_sorted)
 {
     nlohmann::json json_answers;
     for (size_t i = 0; i < answers_sorted.size(); i++)

@@ -22,7 +22,7 @@ namespace detail
 @param[in]     f  the substring to replace with @a t
 @param[in]     t  the string to replace @a f
 
-@pre The search string @a f must not be empty. **This precondition is
+@pre The Search string @a f must not be empty. **This precondition is
 enforced with an assertion.**
 
 @since version 2.0.0

@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width">
     
     <title>nativejson-benchmark/conformance_Nlohmann (C++11).md at master · miloyip/nativejson-benchmark · GitHub</title>
-    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
+    <link rel="Search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
     <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
@@ -134,13 +134,13 @@
           <a class="nav-item" href="/pricing">Pricing</a>
           <a class="nav-item" href="/blog">Blog</a>
           <a class="nav-item" href="https://help.github.com">Support</a>
-          <a class="nav-item header-search-link" href="https://github.com/search">Search GitHub</a>
-              <div class="header-search scoped-search site-scoped-search js-site-search" role="search">
-  <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/miloyip/nativejson-benchmark/search" class="js-site-search-form" data-scoped-search-url="/miloyip/nativejson-benchmark/search" data-unscoped-search-url="/search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
-    <label class="form-control header-search-wrapper js-chromeless-input-container">
-      <div class="header-search-scope">This repository</div>
+          <a class="nav-item header-search-link" href="https://github.com/Search">Search GitHub</a>
+              <div class="header-search scoped-search site-scoped-search js-site-search" role="Search">
+  <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/miloyip/nativejson-benchmark/Search" class="js-site-Search-form" data-scoped-Search-url="/miloyip/nativejson-benchmark/Search" data-unscoped-Search-url="/Search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+    <label class="form-control header-Search-wrapper js-chromeless-input-container">
+      <div class="header-Search-scope">This repository</div>
       <input type="text"
-        class="form-control header-search-input js-site-search-focus js-site-search-field is-clearable"
+        class="form-control header-Search-input js-site-search-focus js-site-search-field is-clearable"
         data-hotkey="s"
         name="q"
         placeholder="Search"

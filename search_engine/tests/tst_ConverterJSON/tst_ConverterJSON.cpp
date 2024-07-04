@@ -71,6 +71,6 @@ TEST(ConverterJSON, putAnswers)
 {
     std::string path = "C:\\develop\\C++ CLion\\search_engine_new\\tests\\tst_ConverterJSON\\answers.json";
     std::vector<std::vector<std::pair<int, double>>> answers_sorted = {{{2, 0.989}, {2, 0.979}, {1, 0.955}}, {{5, 0.987}}, {{1, 0.989}, {4, 0.779}}};
-    ConverterJSON::putAnswers(path, answers_sorted);
+    ConverterJSON::PutAnswers(path, answers_sorted);
     EXPECT_TRUE(true);
 }

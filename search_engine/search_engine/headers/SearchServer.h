@@ -30,9 +30,9 @@ requests.json
 * @return возвращает отсортированный список релевантных ответов для
 заданных запросов
 */
-    std::vector<std::vector<RelativeIndex>> search(const std::vector<std::string>& queries_input, size_t max_responses);
+    std::vector<std::vector<RelativeIndex>> Search(const std::vector<std::string>& queries_input, size_t max_responses);
 
-    static std::vector<std::vector<std::pair<int, double>>> answer_search_to_pair(std::vector<std::vector<RelativeIndex>> answer_search);
+    static std::vector<std::vector<std::pair<int, double>>> AnswerSearchToPair(std::vector<std::vector<RelativeIndex>> answer_search);
 private:
     InvertedIndex _index;
 };
