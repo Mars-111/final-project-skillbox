@@ -31,4 +31,12 @@ public:
     * Положить в файл answers.json результаты поисковых запросов
     */
     static void PutAnswers(std::string path_to_answers, const std::vector<std::vector<std::pair<int, double>>>& answers_sorted);
+
+    static void CheckValidConfig(nlohmann::json& config);
+    static void CheckValidRequests(nlohmann::json& requests);
+
+    static std::string GetConfigName(nlohmann::json& config);
+    static std::string GetConfigVersion(nlohmann::json& config);
+
+
 };

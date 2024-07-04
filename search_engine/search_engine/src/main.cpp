@@ -15,36 +15,56 @@ const std::string path_to_res = "res/";
 int main()
 {
 
-    std::ifstream ifs_config(path_to_res + "config.json");
-    std::ifstream ifs_requests(path_to_res + "requests.json");
-    if (!ifs_config.is_open())
-        throw std::invalid_argument("config file is missing");
-    if (!ifs_requests.is_open())
-        throw std::invalid_argument("requests file is missing");
+    try {
+        std::ifstream ifs_config(path_to_res + "config.json");
+        std::ifstream ifs_requests(path_to_res + "requests.json");
 
-    nlohmann::json config = nlohmann::json::parse(ifs_config);
-    nlohmann::json requests = nlohmann::json::parse(ifs_requests);
+        if (!ifs_config.is_open()) {
+            throw std::invalid_argument("config file is missing");
+        }
+        if (!ifs_requests.is_open()) {
+            throw std::invalid_argument("requests file is missing");
+        }
 
-    ifs_config.close();
-    ifs_requests.close();
+        nlohmann::json config = nlohmann::json::parse(ifs_config);
+        nlohmann::json requests = nlohmann::json::parse(ifs_requests);
 
-
-    InvertedIndex inv;
-    inv.UpdateDocumentBase(ConverterJSON::GetTextDocuments(config));
-
-    SearchServer ss(inv);
-    auto final_search =
-            SearchServer::AnswerSearchToPair(
-                    ss.Search(ConverterJSON::GetRequests(requests),
-                              ConverterJSON::GetResponsesLimit(config))
-            );
+        ifs_config.close();
+        ifs_requests.close();
 
 
-    ConverterJSON::PutAnswers(
-            path_to_res + "answers.json",
-            final_search
-    );
 
+        //std::cout<<"Start "<<ConverterJSON::GetConfigName(config)<<" "<<ConverterJSON::GetConfigVersion(config)<<"\n";
+        //Только мешает
+
+
+        InvertedIndex inv;
+        inv.UpdateDocumentBase(ConverterJSON::GetTextDocuments(config));
+
+        SearchServer ss(inv);
+        auto final_search =
+                SearchServer::AnswerSearchToPair(
+                        ss.Search(ConverterJSON::GetRequests(requests),
+                                  ConverterJSON::GetResponsesLimit(config))
+                );
+
+
+        ConverterJSON::PutAnswers(
+                path_to_res + "answers.json",
+                final_search
+        );
+
+
+    } catch(std::invalid_argument& e) {
+        std::cerr<<e.what()<<'\n';
+        return 0;
+    } catch(...) {
+        std::cerr<<"Unknown error\n";
+        return 0;
+    }
+
+    //std::cout<<"Success\n";
+    //system("pause"); Только мешает
 
     return 0;
 }

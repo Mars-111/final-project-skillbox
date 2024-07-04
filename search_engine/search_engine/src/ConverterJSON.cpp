@@ -129,3 +129,31 @@ void ConverterJSON::PutAnswers(std::string path_to_answers, const std::vector<st
     f.write(json_answers.dump(4).c_str(), json_answers.dump(4).size());
     f.close();
 }
+
+void ConverterJSON::CheckValidConfig(nlohmann::json &config)
+{
+    if (!config.contains("config")) throw std::invalid_argument("config file is empty.");
+    if (!config.contains("files")) throw std::invalid_argument("config file is empty.");
+    if (!config["config"].contains("name")) throw std::invalid_argument("config file does not have a 'name' field.");
+    if (!config["config"].contains("version")) throw std::invalid_argument("config file does not have a 'version' field.");
+    if (!config["config"].contains("max_responses")) throw std::invalid_argument("config file does not have a 'max_responses' field.");
+
+    if (config["config"]["max_responses"].get<int>() < 0) throw std::invalid_argument("max_responses < 0.");
+}
+
+void ConverterJSON::CheckValidRequests(nlohmann::json &requests)
+{
+    if (!requests.contains("requests")) throw std::invalid_argument("requests file is empty.");
+}
+
+std::string ConverterJSON::GetConfigName(nlohmann::json &config) {
+    if (!config.contains("config")) throw std::invalid_argument("config file is empty.");
+    if (!config["config"].contains("name")) throw std::invalid_argument("config file does not have a 'name' field.");
+    return config["config"]["name"].get<std::string>();
+}
+
+std::string ConverterJSON::GetConfigVersion(nlohmann::json &config) {
+    if (!config.contains("config")) throw std::invalid_argument("config file is empty.");
+    if (!config["config"].contains("version")) throw std::invalid_argument("config file does not have a 'version' field.");
+    return config["config"]["version"].get<std::string>();
+}
