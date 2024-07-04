@@ -19,7 +19,7 @@
     Примеры содержимого config.json и requests.json вы можете найти в папке res в проекте или же в (#Использование)
 3. Переместить папку res в один каталог с собранным search_engine.exe
 
-У вас должно получиться (answers.json появляеться сам, при запуске):
+У вас должно получиться:
 
 ![Итог](https://github.com/Mars-111/final-project-skillbox/blob/main/for_readme.png)
 
