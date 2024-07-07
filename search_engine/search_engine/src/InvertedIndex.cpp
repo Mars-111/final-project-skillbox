@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <regex>
+#include <algorithm>
 
 InvertedIndex::InvertedIndex(InvertedIndex const &other) :
         docs(other.docs), freq_dictionary(other.freq_dictionary)    {   }
@@ -21,10 +22,15 @@ void emplaceSortedEntry(std::vector<Entry>& vec, Entry entry)
     vec.emplace_back(entry);
 }
 
+std::string str_tolower(std::string s) {
+    std::transform(s.begin(), s.end(), s.begin(),
+                   [](unsigned char c) { return std::tolower(c); }
+    );
+    return s;
+}
 
 void InvertedIndex::UpdateDocumentBase(std::vector<std::string> input_docs)
 {
-    //ПРОВЕРКА НА ПУСТОТУ input_docs
     freq_dictionary.clear();
 
     docs = std::move(input_docs);
@@ -36,10 +42,10 @@ void InvertedIndex::UpdateDocumentBase(std::vector<std::string> input_docs)
 
         threads.emplace_back([this, i]() {
 
-            std::regex regular(R"(\w+)"); //AND TO LOWER
+            std::regex regular(R"(\w+)");
             std::map<std::string, size_t> words;
             for (std::sregex_iterator it(docs[i].begin(), docs[i].end(), regular); it != std::sregex_iterator(); it++) {
-                words[it->str()]++;
+                words[str_tolower(it->str())]++;
             }
 
             for (auto &word : words)
@@ -60,7 +66,7 @@ void InvertedIndex::UpdateDocumentBase(std::vector<std::string> input_docs)
 std::vector<std::string> getManyWords(const std::string &words) {
     std::vector<std::string> result;
     result.reserve(2);
-    std::regex regular(R"(\w+)"); //AND TO LOWER
+    std::regex regular(R"(\w+)");
 
     for (std::sregex_iterator it(words.begin(), words.end(), regular); it != std::sregex_iterator(); it++) {
         result.push_back(it->str());
@@ -68,13 +74,14 @@ std::vector<std::string> getManyWords(const std::string &words) {
     return result;
 }
 
-std::vector<Entry> InvertedIndex::GetWordCount(const std::string &word)
+std::vector<Entry> InvertedIndex::GetWordCount(std::string word)
 {
+    word = std::move(str_tolower(word));
     if (word.find(" ") != std::string::npos)
     {
         std::vector<std::string> words = getManyWords(word);
         std::map<size_t, size_t> map_words;
-        //СЛОЖИТЬ ПРОСТО ВСЕ КАУНТЫ
+
         for (size_t i = 0; i < words.size(); i++)
         {
             for (size_t j = 0; j < freq_dictionary[words[i]].size(); j++)
@@ -90,5 +97,6 @@ std::vector<Entry> InvertedIndex::GetWordCount(const std::string &word)
         }
         return result;
     }
-    return freq_dictionary.find(word)!=freq_dictionary.end() ? freq_dictionary[word] : std::vector<Entry>(); //COUNT + COUNT
+
+    return freq_dictionary.find(word)!=freq_dictionary.end() ? freq_dictionary[word] : std::vector<Entry>();
 }

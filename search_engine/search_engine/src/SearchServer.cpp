@@ -13,7 +13,6 @@ std::vector<std::vector<RelativeIndex>> SearchServer::Search(const std::vector<s
     {
         std::vector<Entry> vec = _index.GetWordCount(queries_input[i]);
         if (vec.empty()) continue;
-        //std::sort(vec.begin(), vec.end(), std::greater<Entry>()); //Sort by count
         std::stable_sort(vec.begin(), vec.end(), std::greater<Entry>());
         if (vec.size() > max_responses)
             vec.resize(max_responses);

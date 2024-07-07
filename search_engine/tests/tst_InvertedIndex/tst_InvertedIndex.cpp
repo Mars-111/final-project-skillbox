@@ -43,7 +43,7 @@ TEST(TestCaseInvertedIndex, TestBasic) {
 TEST(TestCaseInvertedIndex, TestBasic2) {
     const vector<string> docs = {
             "milk milk milk milk water water water",
-            "milk water water",
+            "Milk water water",
             "milk milk milk milk milk water water water water water",
             "americano cappuccino"
     };

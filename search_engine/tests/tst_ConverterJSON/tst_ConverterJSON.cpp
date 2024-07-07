@@ -17,40 +17,33 @@ TEST(HelloTest, BasicAssertions)
     EXPECT_EQ(7 * 6, 42);
 }
 
-TEST(ConverterJSON, GetTextDocuments)
+TEST(ConverterJSON, GetTextDocuments) //ВЫИГРЫВАЕТ ПО СКОРОСТИ И НАДЕЖНОСТИ
 {
-    std::ifstream fs("C:\\develop\\C++ CLion\\search_engine_new\\res\\config.json");
-    json js = json::parse(fs);
-    fs.close();
-    std::vector<std::string> res = {"1", "2", "3", "", "", "", "", "", "", ""};
-
-    EXPECT_TRUE(ConverterJSON::GetTextDocuments(js) == res);
-}
-
-TEST(ConverterJSON, GetTextDocumentsNoTread) //ВЫИГРЫВАЕТ ПО СКОРОСТИ И НАДЕЖНОСТИ
-{
-    std::ifstream fs("C:\\develop\\C++ CLion\\search_engine_new\\res\\config.json");
+    std::ifstream fs("..\\..\\..\\tests\\res\\config.json");
+    if (!fs.is_open()) std::cerr<<"..\\..\\tests\\res\\config.json not open.\n";
     json js = json::parse(fs);
     fs.close();
     std::vector<std::string> res = {
-            "london is the capital of great britain",
+            "london is the capital of great britain asd asd",
             "paris is the capital of france",
-            "berlin is the capital of germany",
+            "berlin is the capital of germany\r\nasd asd asd",
             "rome is the capital of italy",
             "madrid is the capital of spain",
             "lisboa is the capital of portugal",
-            "bern is the capital of switzerland",
+            "bern is the capital of switzerland\r\nasd",
             "moscow is the capital of russia",
             "kiev is the capital of ukraine",
-            "minsk is the capital of belarus"
+            "minsk is the capital of belarus\r\nasd"
     };
 
+    auto t = ConverterJSON::GetTextDocuments(js);
     EXPECT_TRUE(ConverterJSON::GetTextDocuments(js) == res);
 }
 
 TEST(ConverterJSON, GetResponsesLimit)
 {
-    std::ifstream fs("C:\\develop\\C++ CLion\\search_engine_new\\res\\config.json");
+    std::ifstream fs("..\\..\\..\\tests\\res\\config.json");
+    if (!fs.is_open()) std::cerr<<"res\\config.json not open.\n";
     json js = json::parse(fs);
     fs.close();
 
@@ -59,10 +52,14 @@ TEST(ConverterJSON, GetResponsesLimit)
 
 TEST(ConverterJSON, GetRequests)
 {
-    std::ifstream fs("C:\\develop\\C++ CLion\\search_engine_new\\res\\requests.json");
+    std::ifstream fs("..\\..\\..\\tests\\res\\requests.json");
+    if (!fs.is_open()) std::cerr<<"res\\requests.json not open.\n";
     json js = json::parse(fs);
     fs.close();
-    std::vector<std::string> res = {"some words1..", "some words2..", "some words3..", "some words4.."};
+    std::vector<std::string> res = {"Asd",
+                                    "Berlin",
+                                    "Capital of",
+                                    "Gimpg"};
 
     EXPECT_TRUE(ConverterJSON::GetRequests(js) == res);
 }

@@ -17,17 +17,16 @@ std::vector<std::string> ConverterJSON::GetTextDocuments(nlohmann::json &config)
     {
         result.emplace_back();
 
-        std::ifstream file(config["files"][i], std::ios::binary); //мьютекс надо
-        if (!file.is_open()) //МОЖНО ЕЩЕ ДОБАВИТЬ ПРОВЕРКУ НА ФАИЛ И БАД
+        std::ifstream file(config["files"][i], std::ios::binary);
+        if (!file.is_open())
         {
-            std::cout<<config["files"][i].get<std::string>()<<". does not exist. This file is ignored.\n";
+            std::cerr<<config["files"][i].get<std::string>()<<". does not exist. This file is ignored.\n";
         }
         else
         {
             std::stringstream buffer;
             buffer << file.rdbuf();
             result[i] = buffer.str();
-            //std::getline(file, result[i]);
         }
         file.close();
     }
@@ -53,8 +52,8 @@ std::vector<std::string> ConverterJSON::GetTextDocumentsTread(nlohmann::json& co
             result_mutex.lock();
             result.emplace_back();
             result_mutex.unlock();
-            std::ifstream file(config["files"][i], std::ios::binary); //мьютекс надо
-            if (!file.is_open()) //МОЖНО ЕЩЕ ДОБАВИТЬ ПРОВЕРКУ НА ФАИЛ И БАД
+            std::ifstream file(config["files"][i], std::ios::binary);
+            if (!file.is_open())
             {
                 std::cout<<config["files"][i].get<std::string>()<<"does not exist. This file is ignored.";
             }
@@ -64,16 +63,15 @@ std::vector<std::string> ConverterJSON::GetTextDocumentsTread(nlohmann::json& co
             }
             file.close();
         }, i);
-        //thread[i].detach();
     }
 
     for (auto& i : thread) {
         if (i.joinable())
-            i.join(); //ERROR
+            i.join();
     }
 
     return result;
-} //ДОБАВИТЬ МНОГОПОТОЧНОСТЬ
+}
 
 int ConverterJSON::GetResponsesLimit(nlohmann::json &config)
 {
@@ -126,6 +124,7 @@ void ConverterJSON::PutAnswers(std::string path_to_answers, const std::vector<st
 
     }
     std::ofstream f(path_to_answers, std::ios::binary);
+    if (!f.is_open()) throw std::invalid_argument("answer.json not open!");
     f.write(json_answers.dump(4).c_str(), json_answers.dump(4).size());
     f.close();
 }
