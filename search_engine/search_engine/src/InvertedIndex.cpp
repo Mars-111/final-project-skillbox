@@ -22,7 +22,7 @@ void emplaceSortedEntry(std::vector<Entry>& vec, Entry entry)
     vec.emplace_back(entry);
 }
 
-std::string str_tolower(std::string s) {
+std::string strToLower(std::string s) {
     std::transform(s.begin(), s.end(), s.begin(),
                    [](unsigned char c) { return std::tolower(c); }
     );
@@ -45,7 +45,8 @@ void InvertedIndex::UpdateDocumentBase(std::vector<std::string> input_docs)
             std::regex regular(R"(\w+)");
             std::map<std::string, size_t> words;
             for (std::sregex_iterator it(docs[i].begin(), docs[i].end(), regular); it != std::sregex_iterator(); it++) {
-                words[str_tolower(it->str())]++;
+                std::string str = strToLower(it->str());
+                words[str]++;
             }
 
             for (auto &word : words)
@@ -76,7 +77,7 @@ std::vector<std::string> getManyWords(const std::string &words) {
 
 std::vector<Entry> InvertedIndex::GetWordCount(std::string word)
 {
-    word = std::move(str_tolower(word));
+    word = strToLower(std::move(word));
     if (word.find(" ") != std::string::npos)
     {
         std::vector<std::string> words = getManyWords(word);
